@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Todo from './Todo';
 
 function TodoMain() {
     const [task, setTask] = useState("");
@@ -12,6 +13,7 @@ function TodoMain() {
             setTaskArray((prevTasks) => {
                 return [...prevTasks, task]
             })
+            setTask("")
         }
     }
   return (
@@ -19,6 +21,13 @@ function TodoMain() {
         <div>
             <input type='text' value={task} placeholder='Add task' onChange={onTaskChange} />
             <button onClick={addTask}>Add</button>
+        </div>
+        <div>
+            <ol>
+                {taskArray.map((val, index) => {
+                    return <Todo key={index} id={index} text={val}/>
+                })}
+            </ol>
         </div>
     </div>
   )
